@@ -23,7 +23,9 @@ let css = ref None
 
 let open_document ch ftitle =
   output_string ch
-    "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n\n";
+    "<?xml version=\"1.0\" encoding=\"utf-8\"?> <!-- -*- coding: utf-8 -*- -->\n";
+  output_string ch
+    "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">\n\n";
   output_string ch "<html>\n\n<head>\n";
   output_string ch "<title>"; ftitle(); output_string ch "</title>\n";
   begin match !css with
