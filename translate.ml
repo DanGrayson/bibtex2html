@@ -426,16 +426,18 @@ let one_entry_summary ch biblio (_,b,((_,k,f) as e)) =
   output_string ch "\n\n";
   open_row ch;
   (* JK changes *)
-  if (not !nokeys) || !multiple then output_string ch "[";
   Html.open_anchor ch k;
+  Html.close_anchor ch;
+  Html.open_href ch ("#" ^ k);
+  if (not !nokeys) || !multiple then output_string ch "[";
   if (not !nokeys) || !multiple then begin
     if !multiple then Html.open_href ch (k ^ !link_suffix);
     latex2html ch (if !use_keys then k else Hashtbl.find cite_tab k);
     if !multiple then Html.close_href ch;
   end else
     if !table <> NoTable then output_string ch "&nbsp;";
-  Html.close_anchor ch;
   if (not !nokeys) || !multiple then output_string ch "]";
+  Html.close_href ch;
   (* end of JK changes *)
   output_string ch "\n";
   new_column ch;
