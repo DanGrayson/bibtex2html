@@ -147,22 +147,9 @@ let safe_title e =
 let own_address = "http://www.lri.fr/~filliatr/bibtex2html/"
 
 let header ch =
-  let print_arg s =
-    if String.contains s ' ' then
-      fprintf ch "\"%s\" " s
-    else
-      fprintf ch "%s " s
-  in
   fprintf ch "
 <!-- This document was automatically generated with bibtex2html %s
-     (see http://www.lri.fr/~filliatr/bibtex2html/),
-     with the following command:
-     " Version.version;
-  let argv = Sys.argv in
-  let filename = Array.get argv 0 in
-  Array.set argv 0 (Filename.basename filename);
-  Array.iter print_arg Sys.argv;
-  output_string ch " -->\n\n"
+     (see http://www.lri.fr/~filliatr/bibtex2html/) -->\n\n" Version.version
 
 let footer ch =
   Html.open_balise ch "hr";
